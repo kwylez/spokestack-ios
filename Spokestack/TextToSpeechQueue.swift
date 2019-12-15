@@ -48,6 +48,11 @@ public struct TTSQueueURL: Codable {
         request.addValue(self.configuration.authorization, forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
+        
+        let body = ["voice": input.voice,
+                    "text": input.input]
+        request.httpBody =  try? JSONSerialization.data(withJSONObject: body, options: [])
+        
         return URLSession.shared
             .dataTaskPublisher(for: request)
             .handleEvents(receiveSubscription: { _ in
