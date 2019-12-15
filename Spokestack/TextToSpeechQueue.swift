@@ -50,6 +50,13 @@ public struct TTSQueueURL: Codable {
         request.httpMethod = "POST"
         return URLSession.shared
             .dataTaskPublisher(for: request)
+            .handleEvents(receiveSubscription: { _ in
+              print("Network request will start")
+            }, receiveOutput: { _ in
+              print("Network request data received")
+            }, receiveCancel: {
+              print("Network request cancelled")
+            })
             .receive(on: apiQueue)
             .map(\.data)
             .decode(type: TTSQueueURL.self, decoder: decoder)
