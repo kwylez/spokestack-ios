@@ -29,6 +29,7 @@
 		01D31F8B216BB0220055FD45 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D31F89216BB0220055FD45 /* Results.swift */; };
 		01D31F8E216BB0370055FD45 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D31F8D216BB0370055FD45 /* Typealiases.swift */; };
 		01D31F8F216BB0370055FD45 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D31F8D216BB0370055FD45 /* Typealiases.swift */; };
+		01D3909223A6AD50007FE10D /* TextToSpeechQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D3909123A6AD50007FE10D /* TextToSpeechQueue.swift */; };
 		592C0B7B2385B5E800308CCD /* TTSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592C0B7A2385B5E800308CCD /* TTSViewController.swift */; };
 		5936077D236B687C00FFA29F /* Detect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C15D55234E42F800B091F4 /* Detect.swift */; };
 		5936077E236B687F00FFA29F /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C15D54234E42F700B091F4 /* Filter.swift */; };
@@ -154,6 +155,7 @@
 		01D31F75216BAFEF0055FD45 /* AudioControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioControllerDelegate.swift; sourceTree = "<group>"; };
 		01D31F89216BB0220055FD45 /* Results.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
 		01D31F8D216BB0370055FD45 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
+		01D3909123A6AD50007FE10D /* TextToSpeechQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeechQueue.swift; sourceTree = "<group>"; };
 		0983B0EE40DA914769988A20 /* Pods-SpokestackTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpokestackTests.release.xcconfig"; path = "Target Support Files/Pods-SpokestackTests/Pods-SpokestackTests.release.xcconfig"; sourceTree = "<group>"; };
 		2E5DAE627A148F64B7FFBCD0 /* Pods_SpokestackFrameworkExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpokestackFrameworkExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5123AD317B8D6242E1F19C0E /* Pods-Spokestack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spokestack.release.xcconfig"; path = "Target Support Files/Pods-Spokestack/Pods-Spokestack.release.xcconfig"; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 			children = (
 				01D31F69216BAFC60055FD45 /* SpeechPipeline.swift */,
 				596B82472384A097004BAEF4 /* TextToSpeech.swift */,
+				01D3909123A6AD50007FE10D /* TextToSpeechQueue.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				59C15D57234E42F800B091F4 /* Detect.swift in Sources */,
 				59E0E1372301F0A80060F012 /* Trace.swift in Sources */,
 				59E0E13522FE2C2B0060F012 /* SignalProcessing.swift in Sources */,
+				01D3909223A6AD50007FE10D /* TextToSpeechQueue.swift in Sources */,
 				59A0D5C72204E8E4003709C3 /* SpeechConfiguration.swift in Sources */,
 				59FB0C8D22B0640700FB9662 /* RingBuffer.swift in Sources */,
 				01D31F8E216BB0370055FD45 /* Typealiases.swift in Sources */,
