@@ -7,6 +7,10 @@
 //
 
 import Foundation
+import Combine
+
+private let TTSSpeechQueueName: String = "com.spokestack.ttsspeech.queue"
+private let apiQueue = DispatchQueue(label: TTSSpeechQueueName, qos: .userInitiated, attributes: .concurrent)
 
 @objc public enum TTSInputFormat: Int {
     case text
@@ -19,6 +23,7 @@ import Foundation
     
     weak public var delegate: TextToSpeechDelegate?
     private var configuration: SpeechConfiguration
+    private let decoder = JSONDecoder()
     
     // MARK: Initializers
     
@@ -32,6 +37,34 @@ import Foundation
     }
     
     // MARK: Public Functions
+    
+    @available(iOS 13.0, *)
+    public func synthesize(_ input: TextToSpeechInput) -> AnyPublisher<URL, Error> {
+        var request = URLRequest(url: URL(string: "https://core.pylon.com/speech/v1/tts/synthesize")!)
+        request.addValue(self.configuration.authorization, forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        
+        let body = ["voice": input.voice,
+                    "text": input.input]
+        request.httpBody =  try? JSONSerialization.data(withJSONObject: body, options: [])
+        
+        return URLSession.shared
+            .dataTaskPublisher(for: request)
+            .handleEvents(receiveSubscription: { _ in
+              print("Network request will start")
+            }, receiveOutput: { output in
+                print("Network request data received \(output.response)")
+            }, receiveCancel: {
+              print("Network request cancelled")
+            })
+            .receive(on: apiQueue)
+            .map(\.data)
+            .decode(type: TTSQueueURL.self, decoder: decoder)
+            .map{ URL(string: $0.url)! }
+            .catch{ _ in Empty<URL, Error>() }
+            .eraseToAnyPublisher()
+    }
     
     /// Synthesize speech using the provided input parameters and speech configuration. A successful synthesis will return a URL to the streaming audio container of synthesized speech to the `TextToSpeech`'s `delegate`.
     /// - Note: The URL will be invalidated within 60 seconds of generation.
