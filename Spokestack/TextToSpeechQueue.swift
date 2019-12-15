@@ -52,8 +52,8 @@ public struct TTSQueueURL: Codable {
             .dataTaskPublisher(for: request)
             .handleEvents(receiveSubscription: { _ in
               print("Network request will start")
-            }, receiveOutput: { _ in
-              print("Network request data received")
+            }, receiveOutput: { output in
+                print("Network request data received \(output.response)")
             }, receiveCancel: {
               print("Network request cancelled")
             })
