@@ -39,7 +39,7 @@ private let apiQueue = DispatchQueue(label: TTSSpeechQueueName, qos: .userInitia
     // MARK: Public Functions
     
     @available(iOS 13.0, *)
-    public func synthesize(_ input: TextToSpeechInput) -> AnyPublisher<URL, Error> {
+    public func synthesizePublisher(_ input: TextToSpeechInput) -> AnyPublisher<URL, Error> {
         var request = URLRequest(url: URL(string: "https://core.pylon.com/speech/v1/tts/synthesize")!)
         request.addValue(self.configuration.authorization, forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
