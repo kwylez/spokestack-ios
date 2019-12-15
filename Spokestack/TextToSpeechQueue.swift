@@ -36,8 +36,11 @@ public struct TTSQueueURL: Codable {
     }
     
     public func synthesize(_ inputs: Array<TextToSpeechInput>) -> AnyPublisher<[URL], Error> {
-        
-        return Empty().eraseToAnyPublisher()
+
+        return self.mergedInputs(inputs).scan([]) { inputs, input -> [URL] in
+            return inputs + [input]
+        }
+        .eraseToAnyPublisher()
     }
     
     public func synthesize(_ input: TextToSpeechInput) -> AnyPublisher<URL, Error> {
